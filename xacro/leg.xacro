@@ -43,7 +43,7 @@
     <!-- HFE JOINT -->
     <joint name="${prefix}_hfe_joint" type="revolute">
       <parent link="trunk"/>
-      <child link="${prefix}_UPPER_LEG"/>
+      <child link="${prefix}_upper_leg"/>
       <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
       <!-- joints rotates around the y-axis -->
       <axis xyz="0 1 0"/>
@@ -71,7 +71,7 @@
 
 
     <!-- UPPER LEG LINK -->
-    <link name="${prefix}_UPPER_LEG">
+    <link name="${prefix}_upper_leg">
       <!-- UPPER LEG LINK INERTIAL -->
       <xacro:unless value="${is_right}">
         <!-- Left upper leg inertia -->
@@ -135,8 +135,8 @@
 
     <!-- KFE JOINT -->
     <joint name="${prefix}_kfe_joint" type="revolute">
-      <parent link="${prefix}_UPPER_LEG"/>
-      <child link="${prefix}_LOWER_LEG"/>
+      <parent link="${prefix}_upper_leg"/>
+      <child link="${prefix}_lower_leg"/>
       <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
       <!-- joints rotates around the y-axis -->
       <axis xyz="0 1 0"/>
@@ -164,7 +164,7 @@
 
 
     <!-- LOWERLEG -->
-    <link name="${prefix}_LOWER_LEG">
+    <link name="${prefix}_lower_leg">
       <!-- LOWER LEG LINK INERTIAL -->
       <xacro:unless value="${is_right}">
         <!-- Left lower leg inertia -->
@@ -225,9 +225,9 @@
 
 
 <!-- KFE: Joint between the upper leg and the lower leg -->
-<joint name="${prefix}_ANKLE" type="fixed">
-  <parent link="${prefix}_LOWER_LEG"/>
-  <child link="${prefix}_FOOT"/>
+<joint name="${prefix}_ankle" type="fixed">
+  <parent link="${prefix}_lower_leg"/>
+  <child link="${prefix}_foot"/>
   <!-- Joint placement -->
   <origin xyz="0 0 ${-HFE_2_KFE_z}" rpy="0 0 0" />
   <!-- Limits (usefull?) -->
