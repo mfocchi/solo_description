@@ -4,19 +4,7 @@
 
         <xacro:macro name="leg_gazebo" params="name load_force_sensors">
 
-                <gazebo reference="${name}_haa_joint">
-                        <provideFeedback>true</provideFeedback>
-                </gazebo>
-                <xacro:if value="${load_force_sensors}">
-                        <gazebo>
-                                <plugin name="${name}_haa_sensor" filename="libgazebo_ros_ft_sensor.so">
-                                        <robotNamespace>/hyq/internal_wrench/</robotNamespace>
-                                        <updateRate>100.0</updateRate>
-                                        <topicName>${name}_haa_joint</topicName>
-                                        <jointName>${name}_haa_joint</jointName>
-                                </plugin>
-                        </gazebo>
-                </xacro:if>
+
 
                 <gazebo reference="${name}_kfe_joint">
                         <provideFeedback>true</provideFeedback>
@@ -24,7 +12,7 @@
                 <xacro:if value="${load_force_sensors}">
                         <gazebo>
                                 <plugin name="${name}_kfe_sensor" filename="libgazebo_ros_ft_sensor.so">
-                                        <robotNamespace>/hyq/internal_wrench/</robotNamespace>
+                                        <robotNamespace>/solo/internal_wrench/</robotNamespace>
                                         <updateRate>100.0</updateRate>
                                         <topicName>${name}_kfe_joint</topicName>
                                         <jointName>${name}_kfe_joint</jointName>
@@ -38,7 +26,7 @@
                 <xacro:if value="${load_force_sensors}">
                         <gazebo>
                                 <plugin name="${name}_hfe_sensor" filename="libgazebo_ros_ft_sensor.so">
-                                        <robotNamespace>/hyq/internal_wrench/</robotNamespace>
+                                        <robotNamespace>/solo/internal_wrench/</robotNamespace>
                                         <updateRate>100.0</updateRate>
                                         <topicName>${name}_hfe_joint</topicName>
                                         <jointName>${name}_hfe_joint</jointName>
@@ -71,7 +59,7 @@
                 <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
                 because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
                  <plugin name="${name}_shin_bumper" filename="libgazebo_ros_bumper.so">
-                  <bumperTopicName>/hyq/${name}_shin_bumper</bumperTopicName>
+                  <bumperTopicName>/solo/${name}_shin_bumper</bumperTopicName>
                 </plugin>
             </sensor>
                 </gazebo>
@@ -92,8 +80,8 @@
                                 <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
                                 because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
                                 <plugin name="${name}_foot_bumper" filename="libgazebo_ros_bumper.so">
-                                        <bumperTopicName>/hyq/${name}_foot_bumper</bumperTopicName>
-                                        <robotNamespace>hyq</robotNamespace>
+                                        <bumperTopicName>/solo/${name}_foot_bumper</bumperTopicName>
+                                        <robotNamespace>solo</robotNamespace>
                                 </plugin>
                         </sensor>
                         <material>Gazebo/Black</material>

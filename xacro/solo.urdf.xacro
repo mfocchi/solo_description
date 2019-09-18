@@ -21,8 +21,8 @@
 
 
     <!-- legs transmission -->
-<!--    <xacro:include filename="$(find solo_description)/urdfs/leg.transmission.xacro"/>
-    <xacro:include filename="$(find solo_description)/urdfs/leg.gazebo.xacro"/>-->
+    <xacro:include filename="$(find solo_description)/urdfs/leg.transmission.xacro"/>
+    <xacro:include filename="$(find solo_description)/urdfs/leg.gazebo.xacro"/>
 
 
     <!-- Material for the visual primitives -->
