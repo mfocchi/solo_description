@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<robot name="solo"
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <xacro:property name="color_name" value="grey" />
+  <xacro:property name="color" value="0.8 0.8 0.8" />
+  <xacro:property name="opacity" value="1.0" />
+
+
+    <!-- This argument allows us to load joint sensors that measure the internal wrenches -->
+    <xacro:arg name="load_force_sensors" default="false"/>
+    <xacro:arg name="task_period" default="0.004"/>
+
+    <!-- generic simulator_gazebo plugins for starting mechanism control, ros time -->
+    <xacro:include filename="$(find solo_description)/gazebo/gazebo.urdf.xacro">
+         <xacro:arg name="task_period" value="$(arg task_period)"/>
+    </xacro:include>
+
+
+    <!-- legs transmission -->
+<!--    <xacro:include filename="$(find solo_description)/urdfs/leg.transmission.xacro"/>
+    <xacro:include filename="$(find solo_description)/urdfs/leg.gazebo.xacro"/>-->
+
+
+    <!-- Material for the visual primitives -->
+    <material name="solo_material">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+
+
+  <!-- This file is based on: https://atlas.is.localnet/confluence/display/AMDW/Quadruped+URDF+Files -->
+  <link name="trunk">
+    <!-- BASE LINK INERTIAL -->
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="1.43315091"/>
+        <!-- The base is extremely symmetrical. -->
+        <inertia ixx="0.00578574" ixy="0.0" ixz="0.0"
+                                  iyy="0.01938108" iyz="0.0"
+                                                   izz="0.02476124"                   
+        />
+    </inertial>
+    <!-- BASE LINK VISUAL -->
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
+        </geometry>
+        <material name="${color_name}">
+            <color rgba="${color} ${opacity}"/>
+        </material>
+    </visual>
+    <!-- BASE LINK COLLISION -->
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
+        </geometry>
+        <material name="${color_name}">
+            <color rgba="${color} ${opacity}"/>
+        </material>
+    </collision>
+    <!-- Bullet specific paramters -->
+    <contact>
+      <lateral_friction value="1.0"/>
+      <restitution value="0.5"/>
+    </contact>
+  </link> <!-- END BASE LINK -->
+
+  <!-- Include the legs -->
+  <xacro:include filename="leg.xacro"/>
+
+  <!-- Include the front left leg -->
+  <xacro:leg 
+      prefix="lf"
+      is_front="true"
+      is_right="false"
+      color_name="${color_name}"
+      color="${color}"
+      opacity="${opacity}"
+      load_force_sensors="$(arg load_force_sensors)"/>
+
+  <!-- Include the front right leg -->
+  <xacro:leg 
+      prefix="rf"
+      is_front="true"
+      is_right="true"
+      color_name="${color_name}"
+      color="${color}"
+      opacity="${opacity}"
+      load_force_sensors="$(arg load_force_sensors)"/>
+
+
+
+  <!-- Include the hind left leg -->
+  <xacro:leg 
+      prefix="lh"
+      is_front="false"
+      is_right="false"
+      color_name="${color_name}"
+      color="${color}"
+      opacity="${opacity}"
+      load_force_sensors="$(arg load_force_sensors)"/>
+
+
+
+  <!-- Include the hind right leg -->
+  <xacro:leg 
+      prefix="rh"
+      is_front="false"
+      is_right="true"
+      color_name="${color_name}"
+      color="${color}"
+      opacity="${opacity}"
+      load_force_sensors="$(arg load_force_sensors)"/>
+
+
+</robot>

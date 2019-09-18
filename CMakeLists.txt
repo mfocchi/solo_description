@@ -1,0 +1,56 @@
+######################
+# set up the project #
+######################
+cmake_minimum_required(VERSION 2.8.3)
+project(solo_description)
+
+
+# required to use std::shared_ptr in code AND to link the DG plugins
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-as-needed")
+
+
+############################
+# Search for dependencies. #
+############################
+
+# find dependencies using catkin
+find_package(catkin REQUIRED)
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES rrbot_description
+#  CATKIN_DEPENDS other_catkin_pkg
+#  DEPENDS system_lib
+)
+
+install(DIRECTORY gazebo/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/gazebo
+  PATTERN ".svn" EXCLUDE)
+
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+  PATTERN ".svn" EXCLUDE)
+
+install(DIRECTORY meshes/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes
+  PATTERN ".svn" EXCLUDE)
+
+
+install(DIRECTORY xacro/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/xacro
+  PATTERN ".svn" EXCLUDE)
+
+
+
+install(DIRECTORY rviz/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/rviz
+  PATTERN ".svn" EXCLUDE)
+
+install(DIRECTORY urdfs/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdfs
+  PATTERN ".svn" EXCLUDE)
+
+
+
+catkin_install_python(PROGRAMS scripts/go0
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
