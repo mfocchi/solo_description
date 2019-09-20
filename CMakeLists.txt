@@ -14,13 +14,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-as-needed")
 ############################
 
 # find dependencies using catkin
-find_package(catkin REQUIRED)
 
+find_package(catkin REQUIRED
+  COMPONENTS
+)
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES rrbot_description
-#  CATKIN_DEPENDS other_catkin_pkg
-#  DEPENDS system_lib
+  CATKIN_DEPENDS
 )
 
 install(DIRECTORY gazebo/

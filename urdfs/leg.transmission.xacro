@@ -4,6 +4,17 @@
 
         <xacro:macro name="leg_transmission" params="name">
 
+        <!-- Hip assembly -->
+                <transmission name="${name}_haa_trans">
+                        <type>transmission_interface/SimpleTransmission</type>
+                        <joint name="${name}_haa_joint">
+                                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                        </joint>
+                        <actuator name="${name}_haa_motor">
+                                <hardwareInterface>EffortJointInterface</hardwareInterface>
+                                <mechanicalReduction>1</mechanicalReduction>
+                        </actuator>
+                </transmission>
         <!-- Upper leg -->
                 <transmission name="${name}_hfe_trans">
                         <type>transmission_interface/SimpleTransmission</type>
