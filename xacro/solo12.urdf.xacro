@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="solo"
+<robot name="solo12"
   xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
   xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
   xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
@@ -11,75 +11,72 @@
   <xacro:property name="color" value="0.8 0.8 0.8" />
   <xacro:property name="opacity" value="1.0" />
 
-    <!-- Floating-base Joint -->
-    <link name="world"/>
-    <joint name="floating_base_joint" type="floating">
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <parent link="world"/>
-        <child link="base_link"/>
-        </joint>
-        <joint name="floating_base" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <parent link="base_link"/>
-        <child link="trunk"/>
-    </joint>
-    <link name="trunk"/>
-
-    <!-- Fixed joint to add dummy inertia link -->
-    <joint name="base_to_base_inertia" type="fixed">
-        <parent link="trunk"/>
-        <child link="base_inertia"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-    </joint>
-    <!-- Dummy inertia link, because KDL cannot have inertia on the base link -->
-    <link name="base_inertia">
-        <inertial>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <mass value="1.63315091"/>
-            <!-- The base is extremely symmetrical. -->
-            <inertia ixx="0.00578574" ixy="0.0" ixz="0.0"
-                                      iyy="0.01938108" iyz="0.0"
-                                                       izz="0.02476124"/>
-        </inertial>
-    </link>
-
-  <!-- This file is based on: https://atlas.is.localnet/confluence/display/AMDW/Quadruped+URDF+Files -->
-  <link name="base_link">
-                <!-- BASE LINK VISUAL -->
-                <visual>
-                    <origin xyz="0 0 0" rpy="0 0 0" />
-                    <geometry>
-                      <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
-                    </geometry>
-                    <material name="${color_name}">
-                        <color rgba="${color} ${opacity}"/>
-                    </material>
-                </visual>
-                <!-- BASE LINK COLLISION -->
-                <collision>
-                    <origin xyz="0 0 0" rpy="0 0 0" />
-                    <geometry>
-                      <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
-                    </geometry>
-                    <material name="${color_name}">
-                        <color rgba="${color} ${opacity}"/>
-                    </material>
-                </collision>
-                <!-- Bullet specific paramters -->
-                <contact>
-                  <lateral_friction value="1.0"/>
-                  <restitution value="0.5"/>
-                </contact>
-  </link> <!-- END BASE LINK -->
 
 
+        <xacro:include filename="$(find solo_description)/gazebo/gazebo.urdf.xacro">
+             <xacro:arg name="task_period" value="$(arg task_period)"/>
+        </xacro:include>
 
-  <!-- Include the legs -->
-  <xacro:include filename="leg.xacro"/>
+
+                <!-- Floating-base Joint -->
+                <link name="world"/>
+                <joint name="floating_base_joint" type="floating">
+                    <origin rpy="0 0 0" xyz="0 0 0"/>
+                    <parent link="world"/>
+                    <child link="base_link"/>
+                </joint>
+
+		<link name="base_link" />
+                <joint name="floating_base" type="fixed">
+                    <origin rpy="0 0 0" xyz="0 0 0"/>
+                    <parent link="base_link"/>
+                    <child link="trunk"/>
+                </joint>
+
+		<link name="trunk">
+			<inertial>
+			    <origin xyz="0 0 0" rpy="0 0 0" />
+			    <mass value="1.63315091"/>
+			    <!-- The base is extremely symmetrical. -->
+			    <inertia ixx="0.00578574" ixy="0.0" ixz="0.0"
+				                      iyy="0.01938108" iyz="0.0"
+				                                       izz="0.02476124"/>
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				    <geometry>
+				      <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
+				    </geometry>
+				    <material name="${color_name}">
+				        <color rgba="${color} ${opacity}"/>
+				    </material>
+			</visual>
+			<collision>
+		            <origin xyz="0 0 0" rpy="0 0 0" />
+		            <geometry>
+		              <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
+		            </geometry>
+		            <material name="${color_name}">
+		                <color rgba="${color} ${opacity}"/>
+		            </material>
+               		 </collision>
+			<!-- Bullet specific paramters -->
+		        <contact>
+		          <lateral_friction value="1.0"/>
+		          <restitution value="0.5"/>
+		        </contact>
+		</link>
+
+ 	 <!-- Include the legs -->
+  	<xacro:include filename="$(find solo_description)/urdfs/leg.xacro"/>
+
+	<xacro:arg name="task_period" default="0.004"/>
+
+
 
   <!-- Include the front left leg -->
   <xacro:leg
-      prefix="FL"
+      prefix="lf"
       is_front="true"
       is_right="false"
       has_side_motion="true"
@@ -90,7 +87,7 @@
 
   <!-- Include the front right leg -->
   <xacro:leg
-      prefix="FR"
+      prefix="rf"
       is_front="true"
       is_right="true"
       has_side_motion="true"
@@ -101,7 +98,7 @@
 
   <!-- Include the hind left leg -->
   <xacro:leg
-      prefix="HL"
+      prefix="lh"
       is_front="false"
       is_right="false"
       has_side_motion="true"
@@ -112,7 +109,7 @@
 
   <!-- Include the hind right leg -->
   <xacro:leg
-      prefix="HR"
+      prefix="rh"
       is_front="false"
       is_right="true"
       has_side_motion="true"
