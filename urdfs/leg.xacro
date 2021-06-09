@@ -13,8 +13,8 @@
   <xacro:property name="base_2_HFE_x" value="${190.00 * 0.001}" />
   <xacro:property name="base_2_HFE_y" value="${104.60 * 0.001}" />
 
-  <xacro:property name="HFE_2_KFE_y" value="${37.45 * 0.001}" />
-  <xacro:property name="HFE_2_KFE_z" value="${160.00 * 0.001}" />
+  <xacro:property name="HFE_2_KFE_y" value="0.03745" />
+  <xacro:property name="HFE_2_KFE_z" value="0.16" />
 
   <xacro:property name="KFE_2_FOOT_y" value="${8.0 * 0.001}" />
   <xacro:property name="KFE_2_FOOT_z" value="${160.00 * 0.001}" />
@@ -25,6 +25,11 @@
   <xacro:macro name="leg" params="prefix is_front is_right has_side_motion
                                   color_name color opacity load_force_sensors">
     <xacro:if value="${has_side_motion}">
+
+
+
+      <!--HAA JOINT-->
+
       <joint name="${prefix}_haa_joint" type="revolute">
         <parent link="trunk"/>
         <child link="${prefix}_hip_assembly"/>
@@ -51,6 +56,9 @@
         <!-- pybullet simulation parameters -->
         <dynamics damping="0.0" friction="0.0"/>
       </joint>
+
+
+       <!--HIP ASSEMBLY-->
       <link name="${prefix}_hip_assembly">
         <!-- create a dummy hip_assembly link to join the two joints -->
         <inertial>
@@ -62,6 +70,9 @@
                                                      izz="0.00000001"/>
           </inertial>
       </link>
+
+
+      <!--HFE JOINT-->
       <joint name="${prefix}_hfe_joint" type="revolute">
         <parent link="${prefix}_hip_assembly"/>
         <child link="${prefix}_upper_leg"/>
@@ -103,6 +114,7 @@
         <dynamics damping="0.0" friction="0.0"/>
       </joint>
     </xacro:unless>
+
 
     <!-- UPPER LEG LINK -->
     <link name="${prefix}_upper_leg">
@@ -262,8 +274,14 @@
 <joint name="${prefix}_ankle" type="fixed">
   <parent link="${prefix}_lower_leg"/>
   <child link="${prefix}_foot"/>
-  <!-- Joint placement -->
-  <origin xyz="0 0 ${-HFE_2_KFE_z}" rpy="0 0 0" />
+  <!-- Joint placement --> 
+      <xacro:if value="${is_right}">
+  	<origin xyz="0 -0.008 ${-HFE_2_KFE_z}" rpy="0 0 0" />
+      </xacro:if>
+
+      <xacro:unless value="${is_right}">
+  	<origin xyz="0 0.008 ${-HFE_2_KFE_z}" rpy="0 0 0" />
+      </xacro:unless>
   <!-- Limits (usefull?) -->
   <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
   <!-- pybullet simulation parameters -->
