@@ -70,7 +70,7 @@
  	 <!-- Include the legs -->
   	<xacro:include filename="$(find solo_description)/urdfs/leg.xacro"/>
 
-	<xacro:arg name="task_period" default="0.004"/>
+	
 
 
 
