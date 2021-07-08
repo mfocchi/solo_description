@@ -3,7 +3,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="solo">
 
 <!-- Things that are needed only for Gazebo (not the physical robot). These include sensor and controller plugin specifications -->
-<xacro:macro name="flywheel_train" params="radius">
+<xacro:macro name="flywheel_train" params="radius mass_fh mass_lr inertia_fh inertia_lr">
 
     <xacro:include filename="$(find solo_description)/urdfs/flywheel.transmission.xacro"/>
     <xacro:include filename="$(find solo_description)/urdfs/flywheel.gazebo.xacro"/>
@@ -20,8 +20,8 @@
 
     <link name="left_wheel">
     <inertial>
-    <mass value="0.2"/>
-    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    <mass value="${mass_lr}"/>
+    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_lr}"/>
     </inertial>
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
@@ -46,8 +46,8 @@
 
     <link name="right_wheel">
     <inertial>
-    <mass value="0.2"/>
-    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    <mass value="${mass_lr}"/>
+    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_lr}"/>
     </inertial>
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
@@ -73,8 +73,8 @@
 
     <link name="front_wheel">
     <inertial>
-    <mass value="0.2"/>
-    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    <mass value="${mass_fh}"/>
+    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_fh}"/>
     </inertial>
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
@@ -101,8 +101,8 @@
 
     <link name="back_wheel">
         <inertial>
-        <mass value="0.2"/>
-        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+        <mass value="${mass_fh}"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_fh}"/>
         </inertial>
         <visual>
         <origin rpy="0 0 0" xyz="0 0 0.0"/>

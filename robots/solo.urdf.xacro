@@ -5,7 +5,7 @@
   xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
   xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:arg name="fly" default="false"/>
+  <xacro:arg name="flywheel" default="false"/>
   <xacro:arg name="load_force_sensors" default="false"/>
 
   <xacro:property name="color_name" value="grey" />
@@ -79,9 +79,9 @@
 
 
         <!-- Include flywheel -->
-        <xacro:if value="$(arg fly)">
+        <xacro:if value="$(arg flywheel)">
               <xacro:include filename="$(find solo_description)/urdfs/flywheel.xacro"/>
-                 <xacro:flywheel_train radius="0.05" />
+              <xacro:flywheel_train radius="0.05" mass_lr="0.2" inertia_lr="0.1"  mass_fh="0.2" inertia_fh="0.1"/>
         </xacro:if>
 
 
