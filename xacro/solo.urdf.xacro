@@ -1,10 +1,11 @@
 <?xml version="1.0" ?>
-<robot name="solo12"
+<robot name="solo"
   xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
   xmlns:interface="http://ros.org/wiki/xacro"
   xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
   xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <xacro:arg name="fly" default="false"/>
   <xacro:arg name="load_force_sensors" default="false"/>
 
   <xacro:property name="color_name" value="grey" />
@@ -47,7 +48,7 @@
 				    <geometry>
 				      <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
 				    </geometry>
-				    <material name="${color_name}">
+                                    <material name="${color_name}">
 				        <color rgba="${color} ${opacity}"/>
 				    </material>
 			</visual>
@@ -77,8 +78,12 @@
 
 
 
-    <!-- Include flywheel -->
-    <xacro:include filename="$(find solo_description)/urdfs/flywheel.xacro"/>
+        <!-- Include flywheel -->
+        <xacro:if value="$(arg fly)">
+              <xacro:include filename="$(find solo_description)/urdfs/flywheel.xacro"/>
+                 <xacro:flywheel_train radius="0.05" />
+        </xacro:if>
+
 
 
 

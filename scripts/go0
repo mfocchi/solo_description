@@ -38,7 +38,7 @@ if __name__ == "__main__":
         joint_positions         = []
 
         # Setting the parameters
-        model_name = 'solo12'
+        model_name = 'solo'
         param_name = 'robot_description'
         joint_names.append('lf_haa_joint')
         joint_positions.append(0.2)

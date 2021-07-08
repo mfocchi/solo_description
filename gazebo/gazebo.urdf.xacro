@@ -7,7 +7,7 @@
 		<plugin name="gazebo_ros_controller_manager" filename="libgazebo_ros_control.so">
    
 
-			<robotNamespace>/solo12</robotNamespace>
+			<robotNamespace>/solo</robotNamespace>
 			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
 			<legacyModeNS>true</legacyModeNS>
             		<controlPeriod>$(arg task_period)</controlPeriod>
@@ -15,7 +15,7 @@
 		</plugin>
 
 		<plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d">
-                        <robotNamespace>/solo12</robotNamespace>
+                        <robotNamespace>/solo</robotNamespace>
                         <bodyName>trunk</bodyName>
 			<topicName>ground_truth</topicName>
 			<frameName>world</frameName>

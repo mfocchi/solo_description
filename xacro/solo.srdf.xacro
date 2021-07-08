@@ -1,5 +1,5 @@
 
-<robot name="solo12" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="solo" xmlns:xacro="http://ros.org/wiki/xacro">
 
 
   <group name="base">

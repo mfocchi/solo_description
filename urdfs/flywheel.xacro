@@ -3,8 +3,12 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="solo">
 
 <!-- Things that are needed only for Gazebo (not the physical robot). These include sensor and controller plugin specifications -->
+<xacro:macro name="flywheel_train" params="radius">
+
     <xacro:include filename="$(find solo_description)/urdfs/flywheel.transmission.xacro"/>
     <xacro:include filename="$(find solo_description)/urdfs/flywheel.gazebo.xacro"/>
+
+
 
     <joint name="z_left_wheel_joint" type="continuous">
     <parent link="trunk"/>
@@ -22,13 +26,13 @@
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
     <geometry>
-    <cylinder length="0.05" radius="0.1"/>
+    <cylinder length="0.05" radius="${radius}"/>
     </geometry>
     </visual>
     <collision>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
     <geometry>
-     <cylinder length="0.05" radius="0.1"/>
+     <cylinder length="0.05" radius="${radius}"/>
     </geometry>
     </collision>    </link>
 
@@ -48,13 +52,13 @@
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
     <geometry>
-    <cylinder length="0.05" radius="0.1"/>
+    <cylinder length="0.05" radius="${radius}"/>
     </geometry>
     </visual>
     <collision>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
     <geometry>
-     <cylinder length="0.05" radius="0.1"/>
+     <cylinder length="0.05" radius="${radius}"/>
     </geometry>
     </collision>
     </link>
@@ -75,13 +79,13 @@
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
     <geometry>
-    <cylinder length="0.05" radius="0.1"/>
+    <cylinder length="0.05" radius="${radius}"/>
     </geometry>
     </visual>
     <collision>
     <origin rpy="0 0 0" xyz="0 0 0"/>
     <geometry>
-     <cylinder length="0.05" radius="0.1"/>
+    <cylinder length="0.05" radius="${radius}"/>
     </geometry>
     </collision>
     </link>
@@ -103,13 +107,13 @@
         <visual>
         <origin rpy="0 0 0" xyz="0 0 0.0"/>
         <geometry>
-        <cylinder length="0.05" radius="0.1"/>
+        <cylinder length="0.05" radius="${radius}"/>
         </geometry>
         </visual>
         <collision>
         <origin rpy="0 0 0" xyz="0 0 0.0"/>
         <geometry>
-         <cylinder length="0.05" radius="0.1"/>
+        <cylinder length="0.05" radius="${radius}"/>
         </geometry>
         </collision>
     </link>
@@ -117,4 +121,5 @@
     <xacro:flywheel_transmission/>
     <xacro:flywheel_gazebo/>
 
+</xacro:macro>
 </robot>
