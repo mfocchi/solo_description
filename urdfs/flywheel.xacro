@@ -10,18 +10,19 @@
 
 
 
-    <joint name="z_left_wheel_joint" type="continuous">
+    <joint name="z_left_wheel_joint" type="revolute">
     <parent link="trunk"/>
     <child link="left_wheel"/>
     <origin rpy="-1.57 0 0" xyz=" 0 0.15 0.0"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="0.0"/>
+    <limit effort="1000" lower="-1e06" upper="1e06" velocity="1000"/>
     </joint>
 
     <link name="left_wheel">
     <inertial>
     <mass value="${mass_lr}"/>
-    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_lr}"/>
+    <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="${inertia_lr}"/>
     </inertial>
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
@@ -36,18 +37,19 @@
     </geometry>
     </collision>    </link>
 
-    <joint name="z_right_wheel_joint" type="continuous">
+    <joint name="z_right_wheel_joint" type="revolute">
     <parent link="trunk"/>
     <child link="right_wheel"/>
     <origin rpy="1.57 0 0" xyz=" 0 -0.15 0.0"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="0.0"/>
+    <limit effort="1000" lower="-1e06" upper="1e06" velocity="1000"/>
     </joint>
 
     <link name="right_wheel">
     <inertial>
     <mass value="${mass_lr}"/>
-    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_lr}"/>
+    <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="${inertia_lr}"/>
     </inertial>
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
@@ -63,18 +65,19 @@
     </collision>
     </link>
 
-    <joint name="z_front_wheel_joint" type="continuous">
+    <joint name="z_front_wheel_joint" type="revolute">
     <parent link="trunk"/>
     <child link="front_wheel"/>
     <origin rpy="0.0 1.57 0" xyz=" 0.2 0.0 0.0"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="0.0"/>
+    <limit effort="1000" lower="-1e06" upper="1e06" velocity="1000"/>
     </joint>
 
     <link name="front_wheel">
     <inertial>
     <mass value="${mass_fh}"/>
-    <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_fh}"/>
+    <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="${inertia_fh}"/>
     </inertial>
     <visual>
     <origin rpy="0 0 0" xyz="0 0 0.0"/>
@@ -91,30 +94,31 @@
     </link>
 
 
-    <joint name="z_back_wheel_joint" type="continuous">
+    <joint name="z_back_wheel_joint" type="revolute">
     <parent link="trunk"/>
     <child link="back_wheel"/>
     <origin rpy="0 -1.57 0" xyz=" -0.2 0.0 0.0"/>
     <axis xyz="0 0 1"/>
     <dynamics damping="0.1" friction="0.0"/>
+    <limit effort="1000" lower="-1e06" upper="1e06" velocity="1000"/>
     </joint>
 
     <link name="back_wheel">
         <inertial>
-        <mass value="${mass_fh}"/>
-        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="${inertia_fh}"/>
+            <mass value="${mass_fh}"/>
+            <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="${inertia_fh}"/>
         </inertial>
         <visual>
-        <origin rpy="0 0 0" xyz="0 0 0.0"/>
-        <geometry>
-        <cylinder length="0.05" radius="${radius}"/>
-        </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0.0"/>
+            <geometry>
+            <cylinder length="0.05" radius="${radius}"/>
+            </geometry>
         </visual>
         <collision>
-        <origin rpy="0 0 0" xyz="0 0 0.0"/>
-        <geometry>
-        <cylinder length="0.05" radius="${radius}"/>
-        </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0.0"/>
+            <geometry>
+            <cylinder length="0.05" radius="${radius}"/>
+            </geometry>
         </collision>
     </link>
 
