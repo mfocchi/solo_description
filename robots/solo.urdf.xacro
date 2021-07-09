@@ -15,27 +15,24 @@
              <xacro:arg name="task_period" value="$(arg task_period)"/>
         </xacro:include>
 
-	   <xacro:unless value="$(arg new_gazebo_version)">
-		   
-	   
-
+	     <xacro:unless value="$(arg new_gazebo_version)">  
 		        <!-- Floating-base Joint -->
 		        <link name="world"/>
-		        <joint name="floating_base_joint" type="floating">
+		        <joint name="floating_base_joint" type="floating" >
 		            <origin rpy="0 0 0" xyz="0 0 0"/>
 		            <parent link="world"/>
 		            <child link="base_link"/>
 		        </joint>
-
-			<link name="base_link" />
+	     </xacro:unless>
+	     
+	     	<link name="base_link" />
 		        <joint name="floating_base" type="fixed">
 		            <origin rpy="0 0 0" xyz="0 0 0"/>
 		            <parent link="base_link"/>
 		            <child link="trunk"/>
-		        </joint>
-
-
-	     </xacro:unless>
+		</joint>
+	     
+	     
      
 		<link name="trunk">
 			<inertial>
