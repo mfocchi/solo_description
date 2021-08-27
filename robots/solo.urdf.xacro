@@ -1,21 +1,18 @@
 <?xml version="1.0" ?>
 <robot name="solo" xmlns:xacro="http://ros.org/wiki/xacro">
 
-
     <xacro:property name="color_name" value="grey" />
     <xacro:property name="color" value="0.8 0.8 0.8" />
     <xacro:property name="opacity" value="1.0" />
 
-
     <xacro:arg name="flywheel" default="false"/>
     <xacro:arg name="load_force_sensors" default="false"/>
-    <xacro:arg name="new_gazebo_version" default="true"/>	
-
+    <xacro:arg name="new_gazebo_version" default="false"/>	
 
     <xacro:include filename="$(find solo_description)/gazebo/gazebo.urdf.xacro">
-         <xacro:arg name="task_period" value="$(arg task_period)"/>
+        <xacro:arg name="task_period" value="$(arg task_period)"/>
     </xacro:include>
-   
+
 
     <!-- BASE LINK -->
     <!-- floating type is supported in older versions of Gazebo. In new Gazebo if a link has no parent, it is supposed to be attached to a floating joint -->
@@ -23,14 +20,14 @@
     <xacro:unless value="$(arg new_gazebo_version)">  
         <!-- Floating-base Joint -->
         <link name="world"/>
-        
+
         <joint name="floating_base_joint" type="floating" >
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <parent link="world"/>
             <child link="base_link"/>
         </joint>
     </xacro:unless>
-	
+
     <link name="base_link" />
     
     <joint name="floating_base" type="fixed">
@@ -38,28 +35,28 @@
         <parent link="base_link"/>
         <child link="trunk"/>
     </joint>
-	     
-	     
+
+
+
     <link name="trunk">
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <mass value="1.16115091"/>
             <!-- The base is extremely symmetrical. -->
-            <inertia ixx="0.00578574" ixy="0.0"        ixz="0.0" 
-                                      iyy="0.01938108" iyz="0.0" 
-                                                       izz="0.02476124"/>
+            <inertia ixx="0.00578574"   ixy="0.0"           ixz="0.0"
+                                        iyy="0.01938108"    iyz="0.0"
+                                                            izz="0.02476124"/>
         </inertial>
-
+        
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
                 <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
             </geometry>
-            <material name="${color_name}">
+                <material name="${color_name}">
                 <color rgba="${color} ${opacity}"/>
             </material>
         </visual>
-
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -71,63 +68,67 @@
         </collision>
         <!-- Bullet specific paramters -->
         <contact>
-        <lateral_friction value="1.0"/>
-        <restitution value="0.5"/>
+            <lateral_friction value="1.0"/>
+            <restitution value="0.5"/>
         </contact>
     </link>
-    
-    <!-- Include legs -->
+
+
+    <!-- Include the legs -->
     <xacro:include filename="$(find solo_description)/urdfs/leg.xacro"/>
+
 
     <!-- Include flywheels -->
     <xacro:if value="$(arg flywheel)">
-          <xacro:include filename="$(find solo_description)/urdfs/flywheel.xacro"/>
-          <!-- inertia =  m*radius^2 but I had to set 10 times more for sm stability-->
-          <xacro:flywheel_train radius="0.05" mass_lr="0.1" inertia_lr="0.00025"  mass_fh="0.1" inertia_fh="0.00025"/>
+        <xacro:include filename="$(find solo_description)/urdfs/flywheel.xacro"/>
+        <!-- inertia =  m*radius^2 but I had to set 10 times more for sm stability-->
+        <xacro:flywheel_train radius="0.05" mass_lr="0.1" inertia_lr="0.00025"  mass_fh="0.1" inertia_fh="0.00025"/>
     </xacro:if>
+
 
 
     <!-- LEFT FRONT LEG -->
     <xacro:leg
-        prefix="lf"
-        is_front="true"
-        is_right="false"
-        has_side_motion="true"
-        color_name="${color_name}"
-        color="${color}"
-        opacity="${opacity}"
-        load_force_sensors="$(arg load_force_sensors)"/>
+    prefix="lf"
+    is_front="true"
+    is_right="false"
+    has_side_motion="true"
+    color_name="${color_name}"
+    color="${color}"
+    opacity="${opacity}"
+    load_force_sensors="$(arg load_force_sensors)"/>
 
     <!-- RIGHT FRONT LEG -->
     <xacro:leg
-        prefix="rf"
-        is_front="true"
-        is_right="true"
-        has_side_motion="true"
-        color_name="${color_name}"
-        color="${color}"
-        opacity="${opacity}"
-        load_force_sensors="$(arg load_force_sensors)"/>
+    prefix="rf"
+    is_front="true"
+    is_right="true"
+    has_side_motion="true"
+    color_name="${color_name}"
+    color="${color}"
+    opacity="${opacity}"
+    load_force_sensors="$(arg load_force_sensors)"/>
 
     <!-- LEFT HIND LEG -->
     <xacro:leg
-        prefix="lh"
-        is_front="false"
-        is_right="false"
-        has_side_motion="true"
-        color_name="${color_name}"
-        color="${color}"
-        opacity="${opacity}"
-        load_force_sensors="$(arg load_force_sensors)"/>
+    prefix="lh"
+    is_front="false"
+    is_right="false"
+    has_side_motion="true"
+    color_name="${color_name}"
+    color="${color}"
+    opacity="${opacity}"
+    load_force_sensors="$(arg load_force_sensors)"/>
 
     <!-- RIGHT HIND LEG -->
     <xacro:leg
-        prefix="rh"
-        is_front="false"
-        is_right="true"
-        has_side_motion="true"
-        color_name="${color_name}"
-        color="${color}"
-        opacity="${opacity}"
-        load_force_sensors="$(arg load_force_sensors)"/>
+    prefix="rh"
+    is_front="false"
+    is_right="true"
+    has_side_motion="true"
+    color_name="${color_name}"
+    color="${color}"
+    opacity="${opacity}"
+    load_force_sensors="$(arg load_force_sensors)"/>
+    
 </robot>
