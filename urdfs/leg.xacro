@@ -23,6 +23,8 @@
     <xacro:property name="KFE_2_FOOT_y" value="${8.0 * 0.001}" />
     <xacro:property name="KFE_2_FOOT_z" value="${160.00 * 0.001}" />
     
+    <xacro:property name="MAX_TORQUE" value="$1.2">
+    
 
     <!-- This macro has for purpose to define a leg -->
     <xacro:macro name="leg" params="prefix is_front is_right has_side_motion
@@ -43,13 +45,13 @@
                     <xacro:unless value="${is_right}">
                         <!-- LF_HAA_JOINT -->
                         <!-- lower=-75°, upper=140, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-1.30899694" upper="2.44346095" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-1.30899694" upper="2.44346095" velocity="58.17764173"/>
                         <origin xyz="${base_2_HAA_x} ${base_2_HAA_y} 0" rpy="0 0 0" />
                     </xacro:unless>
                     <xacro:if value="${is_right}">
                         <!-- RF_HAA_JOINT -->
                         <!-- lower=-140°, upper=75, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-2.44346095" upper="1.30899694" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-2.44346095" upper="1.30899694" velocity="58.17764173"/>
                         <origin xyz="${base_2_HAA_x} ${-base_2_HAA_y} 0" rpy="0 0 0" />
                     </xacro:if>
                 </xacro:if>
@@ -57,13 +59,13 @@
                     <xacro:unless value="${is_right}">
                         <!-- LH_HAA_JOINT -->
                         <!-- lower=-75°, upper=140, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-1.30899694" upper="2.44346095" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-1.30899694" upper="2.44346095" velocity="58.17764173"/>
                         <origin xyz="${-base_2_HAA_x} ${base_2_HAA_y} 0" rpy="0 0 0" />
                     </xacro:unless>
                     <xacro:if value="${is_right}">
                         <!-- RH_HAA_JOINT -->
                         <!-- lower=-140°, upper=75, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-2.44346095" upper="1.30899694" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-2.44346095" upper="1.30899694" velocity="58.17764173"/>
                         <origin xyz="${-base_2_HAA_x} ${-base_2_HAA_y} 0" rpy="0 0 0" />
                     </xacro:if>
                 </xacro:unless>
@@ -204,13 +206,13 @@
                     <xacro:unless value="${is_right}">
                         <!-- LF_HFE_JOINT -->
                         <!-- lower=-225°, upper=90°, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-3.92699082" upper="1.57079633" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-3.92699082" upper="1.57079633" velocity="58.17764173"/>
                         <origin xyz="0 ${HAA_2_HFE_y} 0" rpy="0 0 0" />
                     </xacro:unless>
                     <xacro:if value="${is_right}">
                         <!-- RF_HFE_JOINT -->
                         <!-- lower=-225°, upper=90°, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-3.92699082" upper="1.57079633" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-3.92699082" upper="1.57079633" velocity="58.17764173"/>
                         <origin xyz="0 ${-HAA_2_HFE_y} 0" rpy="0 0 0" />
                     </xacro:if>
                 </xacro:if>
@@ -218,13 +220,13 @@
                     <xacro:unless value="${is_right}">
                         <!-- LH_HFE_JOINT -->
                         <!-- lower=-90°, upper=225°, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-1.57079633" upper="3.92699082" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-1.57079633" upper="3.92699082" velocity="58.17764173"/>
                         <origin xyz="0 ${HAA_2_HFE_y} 0" rpy="0 0 0" />
                     </xacro:unless>
                     <xacro:if value="${is_right}">
                         <!-- RF_HFE_JOINT -->
                         <!-- lower=-90°, upper=225°, velocity=555.5rpm (=5000rpm motor-side) -->
-                        <limit effort="1.2" lower="-1.57079633" upper="3.92699082" velocity="58.17764173"/>
+                        <limit effort="${MAX_TORQUE}" lower="-1.57079633" upper="3.92699082" velocity="58.17764173"/>
                         <origin xyz="0 ${-HAA_2_HFE_y} 0" rpy="0 0 0" />
                     </xacro:if>
                 </xacro:unless>
@@ -344,13 +346,13 @@
                 <xacro:unless value="${is_right}">
                     <!-- LF_KFE JOINT -->
                     <!-- lower=-370°, upper=370°, velocity=555.5rpm (=5000rpm motor-side) -->
-                    <limit effort="1.2" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
+                    <limit effort="${MAX_TORQUE}" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
                     <origin xyz="0 ${HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
                 </xacro:unless>
                 <xacro:if value="${is_right}">
                     <!-- RF_KFE JOINT -->
                     <!-- lower=-370°, upper=370°, velocity=555.5rpm (=5000rpm motor-side) -->
-                    <limit effort="1.2" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
+                    <limit effort="${MAX_TORQUE}" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
                     <origin xyz="0 ${-HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
                 </xacro:if>
             </xacro:if>
@@ -358,13 +360,13 @@
                 <xacro:unless value="${is_right}">
                     <!-- LH_KFE JOINT -->
                     <!-- lower=-370°, upper=370°, velocity=555.5rpm (=5000rpm motor-side) -->
-                    <limit effort="1.2" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
+                    <limit effort="${MAX_TORQUE}" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
                     <origin xyz="0 ${HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
                 </xacro:unless>
                 <xacro:if value="${is_right}">
                     <!-- RH_KFE JOINT -->
                     <!-- lower=-370°, upper=370°, velocity=555.5rpm (=5000rpm motor-side) -->
-                    <limit effort="1.2" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
+                    <limit effort="${MAX_TORQUE}" lower="-6.45771823" upper="6.45771823" velocity="58.17764173"/>
                     <origin xyz="0 ${-HFE_2_KFE_y} ${-HFE_2_KFE_z}" rpy="0 0 0" />
                 </xacro:if>
             </xacro:unless>
