@@ -66,20 +66,20 @@
 		    <group name="flywheel" />
 		</group>
 		
-		<group_state name="standing" group="all_legs">
+                <group_state name="home" group="all_legs">
 		    <joint name="floating_base_joint" value="0. 0. 0.223 0. 0. 0. 1." />
 		    <joint name="lf_haa_joint" value="-0.2" />
-		    <joint name="lf_hfe_joint" value="0.78539816" /> 
-		    <joint name="lf_kfe_joint" value="-1.57079633" />
+                    <joint name="lf_hfe_joint" value="0.75" />
+                    <joint name="lf_kfe_joint" value="-1.5" />
 		    <joint name="lh_haa_joint" value="-0.2" />
-		    <joint name="lh_hfe_joint" value="-0.78539816" />
-		    <joint name="lh_kfe_joint" value="1.57079633" />
+                    <joint name="lh_hfe_joint" value="-0.75" />
+                    <joint name="lh_kfe_joint" value="1.5" />
 		    <joint name="rf_haa_joint" value="-0.2" />
-		    <joint name="rf_hfe_joint" value="0.78539816" />
-		    <joint name="rf_kfe_joint" value="-1.57079633" />
+                    <joint name="rf_hfe_joint" value="0.75" />
+                    <joint name="rf_kfe_joint" value="-1.5" />
 		    <joint name="rh_haa_joint" value="-0.2" />
-		    <joint name="rh_hfe_joint" value="-0.78539816" />
-		    <joint name="rh_kfe_joint" value="1.57079633" />
+                    <joint name="rh_hfe_joint" value="-0.75" />
+                    <joint name="rh_kfe_joint" value="1.5" />
 		    <joint name="z_left_wheel_joint"  value="0" />
 		    <joint name="z_right_wheel_joint" value="0" />
 		    <joint name="z_front_wheel_joint" value="0" />
@@ -96,20 +96,20 @@
 		    <group name="rh" />
 		</group>
 		
-		<group_state name="standing" group="all_legs">
+                <group_state name="home" group="all_legs">
 		    <joint name="floating_base_joint" value="0. 0. 0.223 0. 0. 0. 1." />
-		    <joint name="lf_haa_joint" value="-0.2" />
-		    <joint name="lf_hfe_joint" value="0.78539816" /> 
-		    <joint name="lf_kfe_joint" value="-1.57079633" />
-		    <joint name="lh_haa_joint" value="-0.2" />
-		    <joint name="lh_hfe_joint" value="-0.78539816" />
-		    <joint name="lh_kfe_joint" value="1.57079633" />
-		    <joint name="rf_haa_joint" value="-0.2" />
-		    <joint name="rf_hfe_joint" value="0.78539816" />
-		    <joint name="rf_kfe_joint" value="-1.57079633" />
-		    <joint name="rh_haa_joint" value="-0.2" />
-		    <joint name="rh_hfe_joint" value="-0.78539816" />
-		    <joint name="rh_kfe_joint" value="1.57079633" />
+                    <joint name="lf_haa_joint" value="0.2" />
+                    <joint name="lf_hfe_joint" value="0.75" />
+                    <joint name="lf_kfe_joint" value="-1.5" />
+                    <joint name="lh_haa_joint" value="0.2" />
+                    <joint name="lh_hfe_joint" value="-0.75" />
+                    <joint name="lh_kfe_joint" value="1.5" />
+                    <joint name="rf_haa_joint" value="-0.2" />
+                    <joint name="rf_hfe_joint" value="0.75" />
+                    <joint name="rf_kfe_joint" value="-1.5" />
+                    <joint name="rh_haa_joint" value="-0.2" />
+                    <joint name="rh_hfe_joint" value="-0.75" />
+                    <joint name="rh_kfe_joint" value="1.5" />
 		</group_state>
 	
 	</xacro:unless>

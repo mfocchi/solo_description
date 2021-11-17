@@ -7,6 +7,7 @@ import warnings
 from gazebo_ros import gazebo_interface
 from std_srvs.srv import Empty
 from std_msgs.msg import Float64
+from srdfdom.srdf import SRDF
 
 def unpause(gazebo_namespace):
         rospy.loginfo("Waiting for service %s/unpause_physics"%gazebo_namespace)
@@ -38,38 +39,20 @@ if __name__ == "__main__":
         joint_positions         = []
 
         # Setting the parameters
-        model_name = 'solo'
-        param_name = 'robot_description'
-        joint_names.append('lf_haa_joint')
-        joint_positions.append(0.2)
-        joint_names.append('lf_hfe_joint')
-        joint_positions.append(0.75)
-        joint_names.append('lf_kfe_joint')
-        joint_positions.append(-1.5)
-        # RF foot
-        joint_names.append('rf_haa_joint')
-        joint_positions.append(0.2)
-        joint_names.append('rf_hfe_joint')
-        joint_positions.append(0.75)
-        joint_names.append('rf_kfe_joint')
-        joint_positions.append(-1.5)
-        # LH foot
-        joint_names.append('lh_haa_joint')
-        joint_positions.append(-0.2)
-        joint_names.append('lh_hfe_joint')
-        joint_positions.append(-0.75)
-        joint_names.append('lh_kfe_joint')
-        joint_positions.append(1.5)
-        # RH foot
-        joint_names.append('rh_haa_joint')
-        joint_positions.append(-0.2)
-        joint_names.append('rh_hfe_joint')
-        joint_positions.append(-0.75)
-        joint_names.append('rh_kfe_joint')
-        joint_positions.append(1.5)
+        model_name =                       rospy.get_param('/robot_name')
+        robot_description_name             = 'robot_description'
+        robot_semantic_description_name    = 'robot_semantic_description'
 
+        srdf_data = rospy.get_param(robot_semantic_description_name)
+
+        robot = SRDF.from_xml_string(srdf_data)
+
+        for joint in robot.group_state_map['home'].joints:
+                joint_names.append(joint.name)
+                joint_positions.append(joint.value[0])
 
         gazebo_namespace = '/gazebo'
+
         rospy.wait_for_service('%s/set_model_configuration'%(gazebo_namespace))
         rospy.sleep(sleep_time)
         try:
@@ -78,9 +61,10 @@ if __name__ == "__main__":
         except (rospy.ServiceException, e):
                 print ("set model configuration service call failed: %s"%e)
 
+        
         rospy.wait_for_service('%s/unpause_physics'%(gazebo_namespace))
         try:
                 success = unpause(gazebo_namespace)
         except (rospy.ServiceException, e):
                 print ( "unpause physics service call failed: %s"%e)
-
+            
