@@ -88,7 +88,7 @@
                                 <always_on>true</always_on>
                                 <update_rate>250.0</update_rate>
                                 <contact>
-                                        <collision>${name}_lowerleg_fixed_joint_lump__${name}_foot_collision_1</collision>
+                                        <collision>${name}_lower_leg_fixed_joint_lump__${name}_foot_collision_1</collision>
                                 </contact>
                                 <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
                                 because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
