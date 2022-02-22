@@ -51,7 +51,8 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
+                <!-- mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/ -->
+                <mesh filename="package://solo_description/meshes/stl/solo12/solo12_base.stl"/>
             </geometry>
                 <material name="${color_name}">
                 <color rgba="${color} ${opacity}"/>
@@ -60,7 +61,8 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/>
+                <!-- mesh filename="package://solo_description/meshes/stl/with_foot/solo_body.stl"/ -->
+                <mesh filename="package://solo_description/meshes/stl/solo12/solo12_base.stl"/>
             </geometry>
             <material name="${color_name}">
                 <color rgba="${color} ${opacity}"/>
@@ -72,6 +74,8 @@
             <restitution value="0.5"/>
         </contact>
     </link>
+    
+    
 
 
     <!-- Include the legs -->

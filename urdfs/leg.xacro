@@ -23,8 +23,8 @@
     <xacro:property name="KFE_2_FOOT_y" value="${8.0 * 0.001}" />
     <xacro:property name="KFE_2_FOOT_z" value="${160.00 * 0.001}" />
     
-    <xacro:property name="MAX_TORQUE" value="1.2" />
-    
+    <xacro:property name="MAX_TORQUE" value="1.7" /> 
+        
 
     <!-- This macro has for purpose to define a leg -->
     <xacro:macro name="leg" params="prefix is_front is_right has_side_motion
@@ -299,10 +299,12 @@
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
                     <xacro:unless value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_left_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_left_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_upper_leg_left_side.stl"/>
                     </xacro:unless>
                     <xacro:if value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_right_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_right_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_upper_leg_right_side.stl"/>
                     </xacro:if>
                 </geometry>
                 <material name="${color_name}">
@@ -315,10 +317,12 @@
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
                     <xacro:unless value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_left_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_left_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_upper_leg_left_side.stl"/>
                     </xacro:unless>
                     <xacro:if value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_right_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_upper_leg_right_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_upper_leg_right_side.stl"/>
                     </xacro:if>
                 </geometry>
                 <material name="${color_name}">
@@ -405,10 +409,12 @@
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
                     <xacro:unless value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_left_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_left_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_lower_leg_left_side.stl"/>
                     </xacro:unless>
                     <xacro:if value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_right_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_right_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_lower_leg_right_side.stl"/>
                     </xacro:if>
                 </geometry>
                 <material name="${color_name}">
@@ -421,10 +427,12 @@
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
                     <xacro:unless value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_left_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_left_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_lower_leg_left_side.stl"/>
                     </xacro:unless>
                     <xacro:if value="${is_right}">
-                        <mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_right_side.stl"/>
+                        <!--mesh filename="package://solo_description/meshes/stl/with_foot/solo_lower_leg_right_side.stl"/-->
+                        <mesh filename="package://solo_description/meshes/stl/solo12/solo12_lower_leg_right_side.stl"/>
                     </xacro:if>
                 </geometry>
                 <material name="${color_name}">
@@ -473,6 +481,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
+                    <!-- mesh filename="package://solo_description/meshes/stl/with_foot/solo_foot.stl"/ -->
                     <mesh filename="package://solo_description/meshes/stl/with_foot/solo_foot.stl"/>
                 </geometry>
                 <material name="${color_name}">
@@ -484,20 +493,21 @@
             <collision>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://solo_description/meshes/stl/with_foot/solo_foot.stl"/>
-                    <!-- sphere radius="0.01"/-->
+                    <!-- mesh filename="package://solo_description/meshes/stl/with_foot/solo_foot.stl"/ -->
+                    <mesh filename="package://solo_description/meshes/stl/with_foot/solo_foot.stl"/>>
+                    <!--sphere radius="0.01"/-->
                 </geometry>
                 <material name="${color_name}">
                     <color rgba="${color} ${opacity}"/>
                 </material>
-            </collision>
-            
+            </collision>            
             <!-- Bullet specific paramters -->
             <contact>
-                <lateral_friction value="1.0"/>
-                <restitution value="0.5"/>
+                <lateral_friction value="0.8"/>
+                <restitution value="0.0"/>
             </contact>
-        </link> <!-- END FOOT LINK -->
+        </link> 
+        <!-- END FOOT LINK -->
 
         <!-- Extensions -->
         <xacro:leg_transmission name="${prefix}"/>
