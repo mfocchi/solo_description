@@ -29,15 +29,11 @@
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0.0"/>
                 <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
+                     <!--cylinder length="0.05" radius="${radius}"/-->
+		    <box size="${radius*2}  ${radius} 0.02" />
                 </geometry>
             </visual>
-            <collision>
-                <origin rpy="0 0 0" xyz="0 0 0.0"/>
-                <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
-                </geometry>
-            </collision>    
+
         </link>
 
         <joint name="z_right_wheel_joint" type="revolute">
@@ -57,15 +53,11 @@
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0.0"/>
                 <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
+                      <!--cylinder length="0.05" radius="${radius}"/-->
+		    <box size="${radius*2}  ${radius} 0.02" />
                 </geometry>
             </visual>
-            <collision>
-                <origin rpy="0 0 0" xyz="0 0 0.0"/>
-                <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
-                </geometry>
-            </collision>
+  
         </link>
 
         <joint name="z_front_wheel_joint" type="revolute">
@@ -85,15 +77,11 @@
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0.0"/>
                 <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
+                    <!--cylinder length="0.05" radius="${radius}"/-->
+		    <box size="${radius*2}  ${radius} 0.02" />
                 </geometry>
             </visual>
-            <collision>
-                <origin rpy="0 0 0" xyz="0 0 0"/>
-                <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
-                </geometry>
-            </collision>
+ 
         </link>
 
 
@@ -114,15 +102,11 @@
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0.0"/>
                 <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
+                    <!--cylinder length="0.05" radius="${radius}"/-->
+		    <box size="${radius*2}  ${radius} 0.02" />
                 </geometry>
             </visual>
-            <collision>
-                <origin rpy="0 0 0" xyz="0 0 0.0"/>
-                <geometry>
-                    <cylinder length="0.05" radius="${radius}"/>
-                </geometry>
-            </collision>
+            
         </link>
 
         <xacro:flywheel_transmission/>

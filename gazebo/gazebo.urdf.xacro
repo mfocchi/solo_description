@@ -6,11 +6,11 @@
 	<gazebo>
 		<plugin name="gazebo_ros_controller_manager" filename="libgazebo_ros_control.so">
    
-
+			<!-- if task_period is smaller than sim max_step_size (in world file) it is clamped to that value!!!!!!-->
 			<robotNamespace>/solo</robotNamespace>
 			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
 			<legacyModeNS>true</legacyModeNS>
-            		<controlPeriod>$(arg task_period)</controlPeriod>
+                        <controlPeriod>$(arg task_period)</controlPeriod>
 
 		</plugin>
 
