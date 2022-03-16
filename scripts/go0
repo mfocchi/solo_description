@@ -23,6 +23,7 @@ def unpause(gazebo_namespace):
 
 
 if __name__ == "__main__":
+        rospy.loginfo("Launch go0")
         if len(sys.argv) < 2:
                 sleep_time = 0.0
         else:
