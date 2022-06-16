@@ -3,17 +3,19 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="solo">
 
     <!-- Things that are needed only for Gazebo (not the physical robot). These include sensor and controller plugin specifications -->
-    <xacro:macro name="flywheel_train" params="radius height mass inertia_z inertia_xy angle">
+    <xacro:macro name="flywheel_train" params="radius height mass inertia_z inertia_xy angle_deg">
 
         <xacro:include filename="$(find solo_description)/urdfs/flywheel2.transmission.xacro"/>
         <xacro:include filename="$(find solo_description)/urdfs/flywheel2.gazebo.xacro"/>
+        <xacro:property name="PI" value="3.1415926535897931"/>
+        <xacro:property name="angle_rad" value="${angle_deg * PI / 180}"/>
 
 
 
         <joint name="z_left_wheel_joint" type="revolute">
             <parent link="trunk"/>
             <child link="left_wheel"/>
-            <origin rpy="-1.57 0 -${angle}" xyz="${-0.025 +0.025*cos(angle) +0.02*sin(angle)} ${+0.047 -0.025*sin(angle) +0.02*cos(angle)} 0.066"/>
+            <origin rpy="${-PI/2} 0 -${angle_rad}" xyz="${-0.025 +0.025*cos(angle_rad) +0.02*sin(angle_rad)} ${+0.047 -0.025*sin(angle_rad) +0.02*cos(angle_rad)} 0.066"/>
             <axis xyz="0 0 1"/>
             <dynamics damping="0.0" friction="0.0"/>
             <limit effort="0.225" lower="-1e06" upper="1e06" velocity="523"/>
@@ -30,7 +32,7 @@
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0.0"/>
                 <geometry>
-                    <mesh scale="0.001 0.001 0.001" filename="package://solo_description/meshes/stl/flywheel/flywheel.stl"/>
+                    <mesh scale="0.001 0.001 0.001" filename="package://solo_description/meshes/stl/flywheel/flywheel.stl"/> <!--the measure in the stl files are expressed in mm-->
                 </geometry>
             </visual>
             <collision>
@@ -44,7 +46,7 @@
         <joint name="z_right_wheel_joint" type="revolute">
             <parent link="trunk"/>
             <child link="right_wheel"/>
-            <origin rpy="1.57 0 ${angle}" xyz="${-0.025 +0.025*cos(angle)+0.02*sin(angle)} ${-0.047 +0.025*sin(angle) -0.02*cos(angle)} 0.066"/>
+            <origin rpy="${PI/2} 0 ${angle_rad}" xyz="${-0.025 +0.025*cos(angle_rad)+0.02*sin(angle_rad)} ${-0.047 +0.025*sin(angle_rad) -0.02*cos(angle_rad)} 0.066"/>
             <axis xyz="0 0 1"/>
             <dynamics damping="0.0" friction="0.0"/>
             <limit effort="0.225" lower="-1e06" upper="1e06" velocity="523"/>

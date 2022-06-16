@@ -7,7 +7,7 @@
 
     <xacro:arg name="flywheel" default="false"/>
     <xacro:arg name="flywheel2" default="true"/>
-    <xacro:arg name="angle" default="0.0"/>
+    <xacro:arg name="angle_deg" default="0.0"/> 
     <xacro:arg name="load_force_sensors" default="false"/>
     <xacro:arg name="new_gazebo_version" default="false"/>	
 
@@ -90,7 +90,7 @@
     <xacro:if value="$(arg flywheel2)">
         <xacro:include filename="$(find solo_description)/urdfs/flywheel2.xacro"/>
         <!-- inertia =  m*radius^2 but I had to set 10 times more for sm stability-->
-        <xacro:flywheel_train radius="0.03" height="0.01" mass="0.1" inertia_z="0.000068" inertia_xy="0.000037" angle="$(arg angle)"/>
+        <xacro:flywheel_train radius="0.03" height="0.01" mass="0.1" inertia_z="0.000068" inertia_xy="0.000037" angle_deg="$(arg angle_deg)"/>
     </xacro:if>
 
 
