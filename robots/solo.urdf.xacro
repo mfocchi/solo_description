@@ -6,6 +6,7 @@
     <xacro:property name="opacity" value="1.0" />
 
     <xacro:arg name="flywheel" default="false"/>
+    <!--- new_gazebo_version should be false by default because pinocchio needs it!-->
     <xacro:arg name="flywheel2" default="true"/>
     <xacro:arg name="angle_deg" default="0.0"/> 
     <xacro:arg name="load_force_sensors" default="false"/>
@@ -13,6 +14,7 @@
 
     <xacro:include filename="$(find solo_description)/gazebo/gazebo.urdf.xacro">
         <xacro:arg name="task_period" value="$(arg task_period)"/>
+	<xacro:arg name="robot_name" value="$(arg robot_name)"/>
     </xacro:include>
 
 
@@ -103,8 +105,7 @@
     has_side_motion="true"
     color_name="${color_name}"
     color="${color}"
-    opacity="${opacity}"
-    load_force_sensors="$(arg load_force_sensors)"/>
+    opacity="${opacity}"/>
 
     <!-- RIGHT FRONT LEG -->
     <xacro:leg
@@ -114,8 +115,7 @@
     has_side_motion="true"
     color_name="${color_name}"
     color="${color}"
-    opacity="${opacity}"
-    load_force_sensors="$(arg load_force_sensors)"/>
+    opacity="${opacity}"/>
 
     <!-- LEFT HIND LEG -->
     <xacro:leg
@@ -125,8 +125,7 @@
     has_side_motion="true"
     color_name="${color_name}"
     color="${color}"
-    opacity="${opacity}"
-    load_force_sensors="$(arg load_force_sensors)"/>
+    opacity="${opacity}"/>
 
     <!-- RIGHT HIND LEG -->
     <xacro:leg
@@ -136,7 +135,6 @@
     has_side_motion="true"
     color_name="${color_name}"
     color="${color}"
-    opacity="${opacity}"
-    load_force_sensors="$(arg load_force_sensors)"/>
+    opacity="${opacity}"/>
     
 </robot>

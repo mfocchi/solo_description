@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-<xacro:arg name="task_period" default="0.004"/>
+<xacro:arg name="task_period" default="0.004" />
+<xacro:arg name="robot_name" default="solo" />
 
 	<gazebo>
 		<plugin name="gazebo_ros_controller_manager" filename="libgazebo_ros_control.so">
@@ -15,7 +16,7 @@
 		</plugin>
 
 		<plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d">
-                        <robotNamespace>/solo</robotNamespace>
+                        <robotNamespace>/$(arg robot_name)</robotNamespace>
                         <bodyName>trunk</bodyName>
 			<topicName>ground_truth</topicName>
 			<frameName>world</frameName>
