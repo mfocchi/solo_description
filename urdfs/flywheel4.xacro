@@ -5,8 +5,8 @@
     <!-- Things that are needed only for Gazebo (not the physical robot). These include sensor and controller plugin specifications -->
     <xacro:macro name="flywheel_train" params="radius mass_fh mass_lr inertia_fh inertia_lr">
 
-        <xacro:include filename="$(find solo_description)/urdfs/flywheel.transmission.xacro"/>
-        <xacro:include filename="$(find solo_description)/urdfs/flywheel.gazebo.xacro"/>
+        <xacro:include filename="$(find solo_description)/urdfs/flywheel4.transmission.xacro"/>
+        <xacro:include filename="$(find solo_description)/urdfs/flywheel4.gazebo.xacro"/>
 
 
 

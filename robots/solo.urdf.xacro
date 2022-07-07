@@ -5,9 +5,9 @@
     <xacro:property name="color" value="0.8 0.8 0.8" />
     <xacro:property name="opacity" value="1.0" />
 
-    <xacro:arg name="flywheel" default="false"/>
+    <xacro:arg name="flywheel4" default="false"/>
     <!--- new_gazebo_version should be false by default because pinocchio needs it!-->
-    <xacro:arg name="flywheel2" default="true"/>
+    <xacro:arg name="flywheel2" default="false"/>
     <xacro:arg name="angle_deg" default="0.0"/> 
     <xacro:arg name="load_force_sensors" default="false"/>
     <xacro:arg name="new_gazebo_version" default="false"/>	
@@ -83,8 +83,8 @@
 
 
     <!-- Include 4 flywheels -->
-    <xacro:if value="$(arg flywheel)">
-        <xacro:include filename="$(find solo_description)/urdfs/flywheel.xacro"/>
+    <xacro:if value="$(arg flywheel4)">
+        <xacro:include filename="$(find solo_description)/urdfs/flywheel4.xacro"/>
         <!-- inertia =  m*radius^2 but I had to set 10 times more for sm stability-->
         <xacro:flywheel_train radius="0.05" mass_lr="0.1" inertia_lr="0.00025"  mass_fh="0.1" inertia_fh="0.00025"/>
     </xacro:if>
