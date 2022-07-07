@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-        <xacro:macro name="leg_gazebo" params="name">
+        <xacro:macro name="leg_gazebo" params="name robot_name">
 
                 <gazebo reference="${name}_haa_joint">
                         <provideFeedback>true</provideFeedback>
@@ -44,7 +44,7 @@
                 <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
                 because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
                  <plugin name="${name}_shin_bumper" filename="libgazebo_ros_bumper.so">
-                  <bumperTopicName>/solo/${name}_shin_bumper</bumperTopicName>
+                  <bumperTopicName>/${robot_name}/${name}_shin_bumper</bumperTopicName>
                 </plugin>
             </sensor>
                 </gazebo>
@@ -66,7 +66,7 @@
                                 <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
                                 because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
                                 <plugin name="${name}_foot_bumper" filename="libgazebo_ros_bumper.so">
-                                        <bumperTopicName>/solo/${name}_foot_bumper</bumperTopicName>
+                                        <bumperTopicName>/${robot_name}/${name}_foot_bumper</bumperTopicName>
                                         <!--robotNamespace>solo</robotNamespace-->
                                         <frameName>${name}_foot</frameName>
                                 </plugin>
